@@ -1,5 +1,5 @@
 /*article*/
-export class IArticle {
+export interface IArticle {
   _id: string;
   id: number;
   __v: number;
@@ -9,7 +9,7 @@ export class IArticle {
 }
 
 /*语鹊user*/
-export class IYuqueUser {
+export interface IYuqueUser {
   id: number;
   type: string;
   login: string;
@@ -24,7 +24,7 @@ export class IYuqueUser {
 }
 
 /*语鹊文章*/
-export class SourceData {
+export interface SourceData {
   id: number;
   slug: string;
   title: string;

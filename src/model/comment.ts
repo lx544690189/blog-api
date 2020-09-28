@@ -4,7 +4,7 @@ import { MongooseConnection } from '../lib/mongoose';
 
 providerWrapper([
   {
-    id: 'articleModel',
+    id: 'commentModel',
     provider: model,
     scope: ScopeEnum.Singleton,
   },
@@ -14,25 +14,38 @@ export async function model(context: IApplicationContext) {
     'mongooseConnection'
   );
   const {
-    mongoose: { Schema },
+    mongoose: {
+      Schema,
+      Types: { ObjectId },
+    },
     connection,
   } = mongooseConnection;
   const schema = new Schema(
     {
-      id: {
-        type: Number,
+      nickname: {
+        type: String,
         required: true,
-        index: true,
       },
-      sourceData: {
-        type: Object,
+      avatar: {
+        type: String,
         required: true,
+      },
+      ip: {
+        type: String,
+      },
+      ipAddress: {
+        type: String,
+      },
+      referId: {
+        type: ObjectId,
+      },
+      content: {
+        type: String,
       },
     },
     {
       timestamps: true,
-      strict: false,
     }
   );
-  return connection.model('article', schema, 'article');
+  return connection.model('comment', schema, 'comment');
 }
