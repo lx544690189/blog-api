@@ -2,11 +2,13 @@ import {
   Inject,
   Controller,
   Provide,
-  Get,
   Post,
   Body,
+  ALL,
+  Validate,
 } from '@midwayjs/decorator';
 import { Context } from 'egg';
+import { ArticleListQueryDTO, ArticleDetailQueryDTO } from '../dto';
 import { ArticleService } from '../service/article';
 import { YuqueService } from '../service/yuque';
 
@@ -28,17 +30,20 @@ export class ArticleController {
    * @param pageSize
    */
   @Post('/list')
-  async queryList(@Body() current: number, @Body() pageSize: number) {
-    const articleList = await this.articleService.queryList({
-      current,
-      pageSize,
-    });
-    return articleList.map(item => item.sourceData);
+  @Validate()
+  async queryList(@Body(ALL) query: ArticleListQueryDTO) {
+    console.log('query: ', query);
+    const articleList = await this.articleService.queryList(query);
+    return articleList;
   }
 
+  /**
+   * 查询文章详情
+   * @param id
+   */
   @Post('/detail')
-  async detail(@Body() id: number) {
-    const article = await this.articleService.queryById(id);
-    return article.sourceData;
+  async detail(@Body(ALL) query: ArticleDetailQueryDTO) {
+    const article = await this.articleService.queryById(query.id);
+    return article;
   }
 }

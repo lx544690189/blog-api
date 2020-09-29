@@ -31,11 +31,20 @@ export class YuqueService {
     );
     const articleList = result.data.data;
     for (let i = 0; i < articleList.length; i++) {
-      const article = await this.articleModel.findOneAndUpdate(
+      const articleRes = await axios.get(
+        `${this.YUQUE_HOST}/repos/lixin-wbtdl/blog/docs/${articleList[i].slug}`,
+        {
+          headers: {
+            'User-Agent': 'lixin-blog',
+            'X-Auth-Token': token,
+          },
+        }
+      );
+      await this.articleModel.findOneAndUpdate(
         { id: articleList[i].id },
         {
           $set: {
-            sourceData: articleList[i],
+            sourceData: articleRes.data.data,
           },
         },
         {
