@@ -1,13 +1,18 @@
-import { CommonSchedule, Provide, Schedule } from '@midwayjs/decorator';
+// src/schedule/hello.ts
+import { Provide, Schedule, CommonSchedule } from '@midwayjs/decorator';
 
 @Provide()
 @Schedule({
-  interval: '1s', // 2.333s 间隔
-  type: 'worker', // 指定某一个 worker 执行
+  interval: 1000 * 60 * 60, //一个小时
+  type: 'worker',
 })
 export class HelloCron implements CommonSchedule {
-  // 定时执行的具体任务
+  /**
+   * 每小时同步一次语鹊文章
+   * @param ctx
+   */
   async exec(ctx) {
-    console.log('Schedule');
+    // console.log('CommonSchedule');
+    // ctx.logger.info(process.pid, 'hello');
   }
 }

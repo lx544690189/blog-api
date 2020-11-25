@@ -1,7 +1,6 @@
 import { Config, Inject, Provide } from '@midwayjs/decorator';
 import * as mongoose from 'mongoose';
 import axios from 'axios';
-import { IArticle } from '../types/article';
 
 @Provide()
 export class YuqueService {

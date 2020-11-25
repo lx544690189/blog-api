@@ -1,7 +1,5 @@
-import { Config, Inject, Provide } from '@midwayjs/decorator';
+import { Inject, Provide } from '@midwayjs/decorator';
 import * as mongoose from 'mongoose';
-import axios from 'axios';
-import { IArticle } from '../types/article';
 
 @Provide()
 export class ArticleService {
@@ -28,6 +26,8 @@ export class ArticleService {
         first_published_at,
         word_count,
         status,
+        cover,
+        body_html,
       } = item.sourceData;
       return {
         id,
@@ -41,6 +41,8 @@ export class ArticleService {
         first_published_at,
         word_count,
         status,
+        cover,
+        body_html,
       };
     });
     return resData;
