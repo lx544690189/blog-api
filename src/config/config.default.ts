@@ -16,19 +16,18 @@ export default (appInfo: EggAppInfo) => {
     },
   };
 
-  config.yuque = {
-    token: '5vWupeOD5YIQrLVHs32I1Cb2AF9n7VToBTW6r6wR',
-  };
+  // config.yuque = {
+  //   token: '',
+  // };
 
-  config.mongoose = {
-    url:
-      'mongodb://system:82213175@47.99.159.40:27017/blog-lx?authSource=blog-lx',
-    options: {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    } as mongoose.ConnectionOptions,
-  };
+  // config.mongoose = {
+  //   url: '',
+  //   options: {
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //     useCreateIndex: true,
+  //   } as mongoose.ConnectionOptions,
+  // };
 
   // add your config here
   config.middleware = [];
